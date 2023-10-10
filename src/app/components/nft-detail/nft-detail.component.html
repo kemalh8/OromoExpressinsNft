@@ -1,0 +1,16 @@
+<br >
+<a [routerLink]="['/nfts']"> Go back</a>
+<hr>
+<div *ngIf="isLoading">Loading...</div>
+
+<div class="inline" *ngIf="!isLoading">
+    <h1>{{nft?.name}}</h1>
+    <img src="{{nft?.imageUrl}}">
+    <div>{{nft?.id}}</div>
+    <div>{{nft?.description}}</div>
+    <div>{{nft?.creationDate}}</div>
+
+</div>
+
+
+  
