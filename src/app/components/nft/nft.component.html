@@ -20,7 +20,7 @@
                     <td>
                         <img [src]="nft.imageUrl" alt="NFT Image" width="180" height="100">
                     </td>
-                    <td><a [routerLink]="['/nfts/',nft.id]">See nft {{nft.name}}</a></td>
+                    <td><button [routerLink]="['/nfts/',nft.id]">See nft {{nft.name}}</button></td>
                 </tr>
             </tbody>
         </table>

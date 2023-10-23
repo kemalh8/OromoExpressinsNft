@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Nft } from '../../nft';
 import { NftService } from 'src/app/services/nft.service';
 
+
 @Component({
   selector: 'app-nft',
   templateUrl: './nft.component.html',

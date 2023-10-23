@@ -1,5 +1,20 @@
 {
-  "name": "crud-nft",
+  "crud-nft": {
+    "architect": {
+      "build": {
+        "builder": "@angular-devkit/build-angular:browser",
+        "options": {
+          "proxyConfig": "proxy.conf.json"
+        }
+      },
+      "serve": { 
+        "builder": "@angular-devkit/build-angular:dev-server",
+        "options": {
+          "proxyConfig": "proxy.conf.json"
+        }
+      }
+    }
+  },
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,14 +25,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.8",
-    "@angular/common": "^16.2.8",
-    "@angular/compiler": "^16.2.8",
-    "@angular/core": "^16.2.8",
-    "@angular/forms": "^16.2.8",
-    "@angular/platform-browser": "^16.2.8",
-    "@angular/platform-browser-dynamic": "^16.2.8",
-    "@angular/router": "^16.2.8",
+    "@angular/animations": "^16.2.9",
+    "@angular/common": "^16.2.9",
+    "@angular/compiler": "^16.2.9",
+    "@angular/core": "^16.2.9",
+    "@angular/forms": "^16.2.9",
+    "@angular/platform-browser": "^16.2.9",
+    "@angular/platform-browser-dynamic": "^16.2.9",
+    "@angular/router": "^16.2.9",
     "bootstrap": "^5.3.2",
     "jquery": "^3.7.1",
     "rxjs": "~7.8.0",
@@ -27,7 +42,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.5",
     "@angular/cli": "~16.2.5",
-    "@angular/compiler-cli": "^16.2.8",
+    "@angular/compiler-cli": "^16.2.9",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
@@ -37,4 +52,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.1.3"
   }
-}
+}  
+

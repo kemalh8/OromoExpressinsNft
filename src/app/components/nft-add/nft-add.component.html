@@ -1,34 +1,42 @@
 <h1>Add new NFT</h1>
-  <div *ngIf="isLoading">Loading</div>
-  <div *ngIf="!isLoading">
-    <form #form="ngForm" (ngSubmit)="submitForm()">
-        <div>
-            <label for="name">Name</label><br>
-            <input type="text" #name="ngModel" name="name" [(ngModel)]="nft.name" id="name" placeholder="Name of NFT" required>
-            <div *ngIf="!name.valid" class="error">The name field is not valid</div>
-        </div>
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="!isLoading">
+  <form [formGroup]="nftForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="name">Name</label><br>
+      <input type="text" formControlName="name" id="name" name="name" placeholder="Name of NFT" required>
+      <div *ngIf="nftForm.get('name')?.hasError('required')" class="error">Name is required</div>
+    </div><br>
 
-        <div>
-            <label for="description">Description</label><br>
-            <input type="text" #description="ngModel" [(ngModel)]="nft.description" id="description" name="description" placeholder="Description of NFT" required >
-            <div *ngIf="!description.valid" class="error">The description field is not valid</div>
-        </div>
+    <div>
+      <label for="description">Description</label><br>
+      <input type="text" formControlName="description" id="description" name="description" placeholder="Description of NFT" required>
+      <div *ngIf="nftForm.get('description')?.hasError('required')" class="error">Description is required</div>
+    </div><br>
 
-        <div>
-            <label for="creationDate">Creation date</label><br>
-            <input type="date" #creationDate="ngModel" [(ngModel)]="nft.creationDate" id="creationDate" name="creationDate" placeholder="Creation date" required>
-            <div *ngIf="!creationDate.valid" class="error">The creation date field is not valid</div>
-        </div>
+    <div>
+      <label for="imageUrl">Image URL or Image Location</label><br>
+      <input type="file" formControlName="imageUrl" id="imageUrl" name="imageUrl" (change)="onFileSelected($event)" required>
+      <div *ngIf="nftForm.get('imageUrl')?.hasError('required')" class="error">Image URL is required</div>
+    </div><br>
+    
+    <div>
+      <label for="creationDate">Creation date</label><br>
+      <input type="date" formControlName="creationDate" id="creationDate" name="creationDate" placeholder="Creation date" required>
+      <div *ngIf="nftForm.get('creationDate')?.hasError('required')" class="error">Creation date is required</div>
+      <div *ngIf="nftForm.get('creationDate')?.hasError('futureDate')" class="error">Creation date must be in the past</div>
+    </div>
+    
 
-        <div>
-            <label for="imageUrl">Image</label><br>
-            <input type="file" name="imageUrl" #imageUrlInput id="imageUrl"  required>
-        </div>
-        <div>
-            <input [disabled]="!form.valid" type="submit" />
-        </div>
-         <!-- Validation error message -->
+    <div>
+      <label for="price">Price</label><br>
+      <input type="number" formControlName="price" id="price" name="price" placeholder="Price of NFT" required>
+      <div *ngIf="nftForm.get('price')?.hasError('required')" class="error">Price is required</div>
+    </div>
+    <div>
+      <button [disabled]="nftForm.invalid">Add NFT</button>
+    </div>
+    <!-- Validation error message -->
     <div *ngIf="showValidationError" class="error">Please fill out all required fields correctly!</div>
-    </form>
-   
-  </div>
+  </form>
+</div>

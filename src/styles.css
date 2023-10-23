@@ -14,5 +14,10 @@
 }*/
 
 .error{
-color: red;}
+color: red;
+}
+.radio-button {
+    margin-right: 10px; /* Adjust the value to control the space between buttons */
+  }
+  
 
