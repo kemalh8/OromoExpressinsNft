@@ -25,11 +25,10 @@ export class NftAddComponent implements OnInit {
     this.nftForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      creationDate: [this.formatDate(new Date()), [Validators.required, this.validateDate]],
       imageUrl: ['', Validators.required],
-      price: ['', Validators.required]
+      price: ['', Validators.required],
+      creationDate: [null, [Validators.required, this.validateDate]] // Add creationDate control
     });
-    
   }
 
   ngOnInit(): void {
@@ -38,9 +37,6 @@ export class NftAddComponent implements OnInit {
   onFileSelected(event: any) {
     this.selectedImage = event.target.files[0];
   }
-  
-
-  
 
   submitForm(): void {
     this.isLoading = true;
@@ -61,8 +57,9 @@ export class NftAddComponent implements OnInit {
         formData.append('description', this.nftForm?.get('description')?.value);
       }
 
-      // Formating the creationDate 
-      formData.append('creationDate', this.formatDate(this.nftForm?.get('creationDate')?.value));
+      // Format the creationDate here
+      const creationDate = this.formatDate(this.nftForm?.get('creationDate')?.value);
+      formData.append('creationDate', creationDate);
 
       if (this.nftForm?.get('price')?.value !== undefined) {
         formData.append('price', this.nftForm?.get('price')?.value.toString());
@@ -74,6 +71,7 @@ export class NftAddComponent implements OnInit {
         formData.append('image', this.nftForm?.get('image')?.value);
       }
 
+      // Send the data to the API
       this.nftService.add(formData).subscribe({
         next: (data: Nft) => {
           this.router.navigate(['/nfts']);
@@ -94,25 +92,23 @@ export class NftAddComponent implements OnInit {
     }
   }
 
-  validateDate(control: AbstractControl): { [key: string]: any } | null {
+  // Helper function to format a Date object as a string
+  private formatDate(date: Date): string {
+    if (date instanceof Date && !isNaN(date.getTime())) {
+      const isoString = date.toISOString();
+      return isoString.slice(0, isoString.length - 1);
+    } else {
+      console.error('Invalid Date object');
+      return '';
+    }
+  }
+  // Custom validator for creationDate
+  private validateDate(control: AbstractControl): { [key: string]: any } | null {
     const inputDate = new Date(control.value);
-    if (!inputDate || inputDate > new Date()) {
+    const currentDate = new Date();
+    if (inputDate > currentDate) {
       return { futureDate: true };
     }
     return null;
   }
-  
-
- // Helper function to format a Date object as a string
-  private formatDate(date: Date): string {
-    if (date instanceof Date && !isNaN(date.getTime())) {
-      // i have to Check if date is a valid Date object
-      const isoString = date.toISOString();
-      return isoString.slice(0, isoString.length - 1); 
-    } else {
-      console.error('Invalid Date object');
-      return ''; 
-    }
-  }
-
 }
