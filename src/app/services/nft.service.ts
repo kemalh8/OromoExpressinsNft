@@ -10,7 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class NftService {
   apiUrl: string = "https://127.0.0.1:8000/api/nfts";
-  jwtToken: string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2OTgxMzI5NDEsImV4cCI6MTY5ODEzNjU0MSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluIn0.T_0rvKmzdO2v1MttQLVWkrg12HLF06j1Wfi6xFyrSh0M-6eOhqQx6ImuMYmpR5gHC7q-4ChQWnLKYElVzl9uJn6Y1WudEWH0R4jDfAr00fjldEE_WTL6F5dxxgXR9FKJiR_-duj6M8pzKjH61z5StbHQHD-rSSR8JNRRN0qNVx8uR2RWqno2yclg5AOWB6CS35O6P5tlahnnSCZbWdeVantyPlxW9DdLwJ6GImofM6ZLzQ8cp_XDmvmMDEFXgo-r0O5kQNNmmyQ_P0JgfEYv1Zu4fBg1t_fI8TMTuGGe0pICCqj_vVggZeEJhJn40kFxvkcE8EnvF3-a8McbFE_BMg"; // Replace with your actual JWT token
+  jwtToken: string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2OTgxMzkzOTMsImV4cCI6MTY5ODE0Mjk5Mywicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluIn0.P0qfLKl-wFaYv6-4BbXo0Gh_bzrRFyc53FF5ZS4lWj9uNVBc_SHqD9fwkfVagvehIHndI74x3WMdl-Aa-yP3QmpsB-eKMvrZHeSuiOgtOFmnBdzQgweO5yOpSt4JJgNycPFoVMcZxEmOIKRgAtPPEqIvmnj41_HfJkEG9rsgT2-I6_Ls9HY7W_7EJbkqI1aNjqAx0d5RG0Kw3MANFnPcXExNQWqi1DQBcRyHcUdaxpAUPSfYBy82_1Qhmi7c9KgMZhZ58QAGgVNZD6yc-wjHUMi391dbkKKkFediQeFQIP5zqOXV1g3JNloHlvQAU_ddJ-MIneMqAR5tl48QHYNLLg"; // Replace with your actual JWT token
 
 
   constructor(private http: HttpClient) { }

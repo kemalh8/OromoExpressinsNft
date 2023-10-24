@@ -19,9 +19,10 @@
       <input type="file" formControlName="imageUrl" id="imageUrl" name="imageUrl" (change)="onFileSelected($event)" required>
       <div *ngIf="nftForm.get('imageUrl')?.hasError('required')" class="error">Image URL is required</div>
     </div><br>
+    
     <div>
       <label for="creationDate">Creation date</label>
-      <input type="date" formControlName="creationDate" id="creationDate" name="creationDate" placeholder="Creation date of Nft" required>
+      <input type="datetime-local" formControlName="creationDate" id="creationDate" name="creationDate" required>
       <div *ngIf="nftForm.get('creationDate')?.hasError('required')" class="error">Creation date is required</div>
     </div>
     
