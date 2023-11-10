@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your NFT Marketplace</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container"> <!-- Wrap the content in a container -->
+        <h1 class="display-4">Register</h1>
+
+        <form [formGroup]="registrationForm" (ngSubmit)="registerUser()" class="mt-4">
+            <div class="form-group">
+                <label for="username">First name</label>
+                <input type="text" id="username" name="username" formControlName="username" class="form-control">
+                <div class="text-danger" *ngIf="registrationForm.get('username')?.hasError('required')">
+                    Username is required.
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="lastName">Last name</label>
+                <input type="text" id="lastName" name="lastName" formControlName="lastName" class="form-control">
+                <div class="text-danger" *ngIf="registrationForm.get('lastName')?.hasError('required')">
+                    Last Name is required.
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" formControlName="email" class="form-control">
+                <div class="text-danger" *ngIf="registrationForm.get('email')?.hasError('required')">
+                    Email is required.
+                </div>
+                <div class="text-danger" *ngIf="registrationForm.get('email')?.hasError('email')">
+                    Invalid email format.
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" formControlName="password" class="form-control">
+                <div class="text-danger" *ngIf="registrationForm.get('password')?.hasError('required')">
+                    Password is required.
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="birthdate">Birthdate</label>
+                <input type="date" id="birthdate" name="birthdate" formControlName="birthdate" class="form-control">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" formControlName="address" class="form-control">
+            </div>
+
+            <div class="mt-3">
+                <button type="submit" [disabled]="registrationForm.invalid" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div> <!-- Close the container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

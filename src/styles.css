@@ -1,23 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-/*.body{
-    background-color: rgb(12, 12, 13);
-    height: 900px;
-    margin:auto;
 
+.custom-body {
+    margin: 5px; 
 }
-.text{
-    color: white;
-}
-
-.container{
-    text-align: center;
-}*/
 
 .error{
 color: red;
 }
-.radio-button {
-    margin-right: 10px; /* Adjust the value to control the space between buttons */
-  }
+
+
   
 

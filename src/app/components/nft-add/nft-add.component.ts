@@ -27,7 +27,7 @@ export class NftAddComponent implements OnInit {
       description: ['', Validators.required],
       imageUrl: ['', Validators.required],
       price: ['', Validators.required],
-      creationDate: [null, [Validators.required, this.validateDate]] // Add creationDate control
+      createdAt: [null, [Validators.required, this.validateDate]] // Add creationDate control
     });
   }
 
@@ -36,7 +36,11 @@ export class NftAddComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedImage = event.target.files[0];
+    
+    // Remove the 'required' error from the imageUrl control
+    this.nftForm.get('imageUrl')?.setErrors(null);
   }
+  
 
 
 
@@ -44,35 +48,25 @@ export class NftAddComponent implements OnInit {
   submitForm(): void {
     this.isLoading = true;
   
-    if (!this.selectedImage && !this.nftForm?.value.image) {
-      this.nftForm?.get('imageUrl')?.setErrors({ required: true });
+    if (!this.selectedImage) {
+      // Handle the case when no image is selected
+      this.nftForm.get('imageUrl')?.setErrors({ required: true });
+      this.isLoading = false;
       return;
     }
   
-    if (this.nftForm?.valid) {
+    if (this.nftForm.valid) {
       const formData = new FormData();
   
-      if (this.nftForm?.get('name')?.value) {
-        formData.append('name', this.nftForm.get('name')?.value);
-      }
-  
-      if (this.nftForm?.get('description')?.value) {
-        formData.append('description', this.nftForm.get('description')?.value);
-      }
+      formData.append('name', this.nftForm.get('name')?.value);
+      formData.append('description', this.nftForm.get('description')?.value);
   
       // Format the creationDate as an ISO 8601 string
-      const creationDate = new Date(this.nftForm?.get('creationDate')?.value).toISOString();
-      formData.append('creationDate', creationDate);
+      const createdAt = new Date(this.nftForm.get('createdAt')?.value).toISOString();
+      formData.append('createdAt', createdAt);
   
-      if (this.nftForm?.get('price')?.value !== undefined) {
-        formData.append('price', this.nftForm.get('price')?.value.toString());
-      }
-  
-      if (this.selectedImage) {
-        formData.append('image', this.selectedImage, this.selectedImage.name);
-      } else if (this.nftForm.get('image')?.value) {
-        formData.append('image', this.nftForm?.get('image')?.value);
-      }
+      formData.append('price', this.nftForm.get('price')?.value.toString());
+      formData.append('imageUrl', this.selectedImage, this.selectedImage.name);
   
       // Send the data to the API
       this.nftService.add(formData).subscribe({
@@ -82,18 +76,17 @@ export class NftAddComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           console.error('Error adding NFT:', error);
-  
           if (error instanceof HttpErrorResponse) {
             console.error('HTTP Error Status:', error.status);
             console.error('HTTP Error Message:', error.message);
             console.error('HTTP Error Response:', error.error);
           }
-  
           this.isLoading = false;
         },
       });
     }
   }
+  
   
 
   /////////

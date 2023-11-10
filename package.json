@@ -7,7 +7,7 @@
           "proxyConfig": "proxy.conf.json"
         }
       },
-      "serve": { 
+      "serve": {
         "builder": "@angular-devkit/build-angular:dev-server",
         "options": {
           "proxyConfig": "proxy.conf.json"
@@ -52,5 +52,4 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.1.3"
   }
-}  
-
+}
